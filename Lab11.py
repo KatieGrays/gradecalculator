@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import os
-import data
-
 
 def student_info(filename):
     students_dict = {}
@@ -99,9 +97,8 @@ def main():
 
     while True:
         menu_option = input(f'''1. Student grade
-        2. Assignment statistics
-        3. Assignment graph
-        ''')
+2. Assignment statistics
+3. Assignment graph''')
         if menu_option == '1':
             student_overall_grade(students, assignments, submissions)
 
