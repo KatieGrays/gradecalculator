@@ -115,6 +115,10 @@ def main():
     3. Assignment graph
     ''')
             option = sys.argv[1]
+        except IndexError:
+            print("Usage: python script.py <option>")
+        except EOFError:
+            break
 
             if option == '1':
                 studentname = sys.argv[2]
@@ -131,7 +135,6 @@ def main():
                     return
                 assignment_name = sys.argv[2]
                 assignment_graph(assignments, submissions, assignment_name)
-
 
 
 if __name__ == '__main__':
