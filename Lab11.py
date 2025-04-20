@@ -99,7 +99,9 @@ def assignment_graph(assignment_dict, submissions):
     if not assignment_grades:
         print("No submissions found for this assignment.")
     else:
-        plt.hist(assignment_grades, bins=range(0, 100, 10))
+        plt.hist(assignment_grades, bins=range(50, 101, 5))
+        plt.xlabel('Grade Percentage')
+        plt.ylabel('Students')
         plt.title(f'{assignment_name}')
         plt.show()
 
@@ -109,18 +111,21 @@ def main():
     assignments = assignment_info('data/assignments.txt')
     submissions = submission_info('data/submissions')
 
-    while True:
-        menu_option = input('''1. Student grade
-2. Assignment statistics
-3. Assignment graph
-4. Exit
-Choose an option: ''')
+    # Predefined inputs for testing
+    predefined_inputs = [
+        ('1', 'Hannah Cheeseman'),
+        ('2', 'Assignment 1'),
+        ('3', 'Assignment 1'),
+        ('4', '')
+    ]
+
+    for menu_option, input_value in predefined_inputs:
         if menu_option == '1':
-            student_overall_grade(students, assignments, submissions)
+            student_overall_grade(students, assignments, submissions, input_value)
         elif menu_option == '2':
-            assignment_statistics(assignments, submissions)
+            assignment_statistics(assignments, submissions, input_value)
         elif menu_option == '3':
-            assignment_graph(assignments, submissions)
+            assignment_graph(assignments, submissions, input_value)
         elif menu_option == '4':
             break
         else:
