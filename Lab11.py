@@ -80,7 +80,7 @@ def assignment_statistics(assignment_dict, submissions, input_value):
         print(f"Max: {int(max(assignment_grades))}%")
 
 
-def assignment_graph(assignment_dict, submissions):
+def assignment_graph(assignment_dict, submissions, input_value):
     assignment_name = input("What is the assignment name: ")
     assignment_id = None
     assignment_grades = []
