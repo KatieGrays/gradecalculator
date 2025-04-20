@@ -41,14 +41,21 @@ def student_overall_grade(students, assignments, submissions):
     for id, name in students.items():
         if name == studentname:
             student_id = id
-        if student_id is None:
-            print("Student not found")
-            return
-    average_grade = 0
+            break
+    if not student_id:
+        print("Student not found")
+        return
+    total_points = 0
+    total_possible_points = 0
     for id, aid, grade in submissions:
         if id == student_id:
-            average_grade += (grade / 100) * assignments[aid][1]
-    print(f"{round(average_grade / 1000 * 100)}%")
+            total_points += (grade / 100) * assignments[aid][1]
+            total_possible_points += assignments[aid][1]
+    if total_possible_points == 0:
+        print("No submissions found for this student.")
+    else:
+        average_grade = (total_points / total_possible_points) * 100
+        print(f"{round(average_grade, 2)}%")
 
 
 def assignment_statistics(assignment_dict, submissions):
@@ -58,16 +65,19 @@ def assignment_statistics(assignment_dict, submissions):
     for id, (name, points) in assignment_dict.items():
         if name == assignmentname:
             assignment_id = id
-        if assignment_id is None:
-            print("Assignment not found")
-            return
-        for studentid, id, grade in submissions:
-            if id == assignment_id:
-                assignment_grades.append(grade)
-
-    print(f"Min: {(int(min(assignment_grades)))}%")
-    print(f"Avg: {int(sum(assignment_grades) / len(assignment_grades))}%")
-    print(f"Max: {(int(max(assignment_grades)))}%")
+            break
+    if not assignment_id:
+        print("Assignment not found")
+        return
+    for studentid, id, grade in submissions:
+        if id == assignment_id:
+            assignment_grades.append(grade)
+    if not assignment_grades:
+        print("No submissions found for this assignment.")
+    else:
+        print(f"Min: {int(min(assignment_grades))}%")
+        print(f"Avg: {int(sum(assignment_grades) / len(assignment_grades))}%")
+        print(f"Max: {int(max(assignment_grades))}%")
 
 
 def assignment_graph(assignment_dict, submissions):
@@ -86,8 +96,12 @@ def assignment_graph(assignment_dict, submissions):
         if id == assignment_id:
             assignment_grades.append(grade)
 
-    plt.hist(assignment_grades, bins=range(0, 100, 10))
-    plt.show()
+    if not assignment_grades:
+        print("No submissions found for this assignment.")
+    else:
+        plt.hist(assignment_grades, bins=range(0, 100, 10))
+        plt.title(f'{assignment_name}')
+        plt.show()
 
 
 def main():
@@ -96,19 +110,21 @@ def main():
     submissions = submission_info('data/submissions')
 
     while True:
-        menu_option = input(f'''1. Student grade
+        menu_option = input('''1. Student grade
 2. Assignment statistics
-3. Assignment graph''')
+3. Assignment graph
+4. Exit
+Choose an option: ''')
         if menu_option == '1':
             student_overall_grade(students, assignments, submissions)
-
         elif menu_option == '2':
             assignment_statistics(assignments, submissions)
-
         elif menu_option == '3':
-            return assignment_graph(assignments, submissions)
-        else:
+            assignment_graph(assignments, submissions)
+        elif menu_option == '4':
             break
+        else:
+            print("Invalid option. Please try again.")
 
 
 if __name__ == '__main__':
