@@ -117,18 +117,12 @@ def main():
             pass
 
         if menu_option == '1':
-            studentname = input("What is the student's name: ")
-            student_overall_grade(students, assignments, submissions, studentname)
+            student_overall_grade(students, assignments, submissions, studentname = input("What is the student's name: "))
         elif menu_option == '2':
-            assignmentname = input("What is the assignment name: ")
-            assignment_statistics(assignments, submissions, assignmentname)
+            assignment_statistics(assignments, submissions, assignmentname = input("What is the assignment name: "))
         elif menu_option == '3':
-            assignment_name = input("What is the assignment name: ")
-            assignment_graph(assignments, submissions, assignment_name)
-        elif menu_option == '4':
-            break
-        else:
-            print("Invalid option. Please try again.")
+            assignment_graph(assignments, submissions, assignment_name = input("What is the assignment name: "))
+
 
 if __name__ == '__main__':
     main()
