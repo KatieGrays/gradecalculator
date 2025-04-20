@@ -104,7 +104,7 @@ def assignment_graph(assignment_dict, submissions, assignment_name):
         plt.show()
 
 def main():
-    students = student_info('data/students.txt')
+   students = student_info('data/students.txt')
     assignments = assignment_info('data/assignments.txt')
     submissions = submission_info('data/submissions')
 
@@ -112,6 +112,9 @@ def main():
     input_index = 0
 
     while input_index < len(input_lines):
+        print('''1. Student grade
+2. Assignment statistics
+3. Assignment graph''')
         menu_option = input_lines[input_index].strip()
         input_index += 1
 
@@ -127,8 +130,6 @@ def main():
             assignment_name = input_lines[input_index].strip()
             input_index += 1
             assignment_graph(assignments, submissions, assignment_name)
-        elif menu_option == '4':
-            break
         else:
             print("Invalid option. Please try again.")
 
