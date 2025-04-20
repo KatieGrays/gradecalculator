@@ -89,9 +89,9 @@ def main():
         plt.hist(assignment_grades, bins=range(0, 100, 10))
         plt.show()
 
-    students = student_info('students.txt')
-    assignments = assignment_info('assignments.txt')
-    submissions = submission_info('submissions')
+    students = student_info('data/students.txt')
+    assignments = assignment_info('data/assignments.txt')
+    submissions = submission_info('data/submissions')
 
     menu_option = input(f'''1. Student grade
 2. Assignment statistics
