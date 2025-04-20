@@ -123,10 +123,8 @@ Choose an option: ''')
         elif menu_option == '3':
             assignment_name = input("What is the assignment name: ")
             assignment_graph(assignments, submissions, assignment_name)
-        elif menu_option == '4':
-            break
         else:
-            print("Invalid option. Please try again.")
+            break
 
 if __name__ == '__main__':
     main()
