@@ -112,11 +112,9 @@ def main():
             menu_option = input('''1. Student grade
 2. Assignment statistics
 3. Assignment graph
-4. Exit
-Choose an option: ''')
+''')
         except EOFError:
-            print("EOFError: No input provided.")
-            break
+            pass
 
         if menu_option == '1':
             studentname = input("What is the student's name: ")
