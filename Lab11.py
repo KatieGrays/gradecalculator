@@ -111,29 +111,27 @@ def main():
     while True:
         try:
             print('''1. Student grade
-2. Assignment statistics
-3. Assignment graph
-''')
+    2. Assignment statistics
+    3. Assignment graph
+    ''')
             option = sys.argv[1]
 
-       if option == '1':
-        if len(sys.argv) < 3:
-            print("Usage: python script.py 1 <student_name>")
-            return
-        studentname = sys.argv[2]
-        student_overall_grade(students, assignments, submissions, studentname)
-    elif option == '2':
-        if len(sys.argv) < 3:
-            print("Usage: python script.py 2 <assignment_name>")
-            return
-        assignmentname = sys.argv[2]
-        assignment_statistics(assignments, submissions, assignmentname)
-    elif option == '3':
-        if len(sys.argv) < 3:
-            print("Usage: python script.py 3 <assignment_name>")
-            return
-        assignment_name = sys.argv[2]
-        assignment_graph(assignments, submissions, assignment_name)
+            if option == '1':
+                studentname = sys.argv[2]
+                student_overall_grade(students, assignments, submissions, studentname)
+            elif option == '2':
+                if len(sys.argv) < 3:
+                    print("Usage: python script.py 2 <assignment_name>")
+                    return
+                assignmentname = sys.argv[2]
+                assignment_statistics(assignments, submissions, assignmentname)
+            elif option == '3':
+                if len(sys.argv) < 3:
+                    print("Usage: python script.py 3 <assignment_name>")
+                    return
+                assignment_name = sys.argv[2]
+                assignment_graph(assignments, submissions, assignment_name)
+
 
 
 if __name__ == '__main__':
