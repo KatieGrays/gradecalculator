@@ -102,32 +102,31 @@ def assignment_graph(assignment_dict, submissions, assignment_name):
         plt.title(f'{assignment_name}')
         plt.show()
 
-
 def main():
     students = student_info('data/students.txt')
     assignments = assignment_info('data/assignments.txt')
     submissions = submission_info('data/submissions')
 
-    # Predefined inputs for testing
-    predefined_inputs = [
-        ('1', 'Hannah Cheeseman'),
-        ('2', 'Assignment 1'),
-        ('3', 'Assignment 1'),
-        ('4', '')
-    ]
+    while True:
+        menu_option = input('''1. Student grade
+2. Assignment statistics
+3. Assignment graph
+4. Exit
+Choose an option: ''')
 
-    for menu_option, input_value in predefined_inputs:
         if menu_option == '1':
-            student_overall_grade(students, assignments, submissions, input_value)
+            studentname = input("What is the student's name: ")
+            student_overall_grade(students, assignments, submissions, studentname)
         elif menu_option == '2':
-            assignment_statistics(assignments, submissions, input_value)
+            assignmentname = input("What is the assignment name: ")
+            assignment_statistics(assignments, submissions, assignmentname)
         elif menu_option == '3':
-            assignment_graph(assignments, submissions, input_value)
+            assignment_name = input("What is the assignment name: ")
+            assignment_graph(assignments, submissions, assignment_name)
         elif menu_option == '4':
             break
         else:
             print("Invalid option. Please try again.")
-
 
 if __name__ == '__main__':
     main()
