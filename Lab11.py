@@ -108,11 +108,15 @@ def main():
     submissions = submission_info('data/submissions')
 
     while True:
-        menu_option = input('''1. Student grade
+        try:
+            menu_option = input('''1. Student grade
 2. Assignment statistics
 3. Assignment graph
 4. Exit
 Choose an option: ''')
+        except EOFError:
+            print("EOFError: No input provided.")
+            break
 
         if menu_option == '1':
             studentname = input("What is the student's name: ")
@@ -123,8 +127,10 @@ Choose an option: ''')
         elif menu_option == '3':
             assignment_name = input("What is the assignment name: ")
             assignment_graph(assignments, submissions, assignment_name)
-        else:
+        elif menu_option == '4':
             break
+        else:
+            print("Invalid option. Please try again.")
 
 if __name__ == '__main__':
     main()
