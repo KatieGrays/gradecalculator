@@ -35,8 +35,7 @@ def submission_info(foldername):
     return submissions
 
 
-def student_overall_grade(students, assignments, submissions, input_value):
-    studentname = input("What is the student's name: ")
+def student_overall_grade(students, assignments, submissions, studentname):
     student_id = ''
     for id, name in students.items():
         if name == studentname:
@@ -58,8 +57,7 @@ def student_overall_grade(students, assignments, submissions, input_value):
         print(f"{round(average_grade, 2)}%")
 
 
-def assignment_statistics(assignment_dict, submissions, input_value):
-    assignmentname = input("What is the assignment name: ")
+def assignment_statistics(assignment_dict, submissions, assignmentname):
     assignment_id = ''
     assignment_grades = []
     for id, (name, points) in assignment_dict.items():
@@ -80,8 +78,7 @@ def assignment_statistics(assignment_dict, submissions, input_value):
         print(f"Max: {int(max(assignment_grades))}%")
 
 
-def assignment_graph(assignment_dict, submissions, input_value):
-    assignment_name = input("What is the assignment name: ")
+def assignment_graph(assignment_dict, submissions, assignment_name):
     assignment_id = None
     assignment_grades = []
     for id, (name, points) in assignment_dict.items():
