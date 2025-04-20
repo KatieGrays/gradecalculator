@@ -35,7 +35,7 @@ def submission_info(foldername):
     return submissions
 
 
-def student_overall_grade(students, assignments, submissions):
+def student_overall_grade(students, assignments, submissions, input_value):
     studentname = input("What is the student's name: ")
     student_id = ''
     for id, name in students.items():
