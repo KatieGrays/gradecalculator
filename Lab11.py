@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import os
-import sys
 
 def student_info(filename):
     students_dict = {}
@@ -110,32 +109,26 @@ def main():
 
     while True:
         try:
-            print('''1. Student grade
-    2. Assignment statistics
-    3. Assignment graph
-    ''')
-            option = sys.argv[1]
-        except IndexError:
-            print("Usage: python script.py <option>")
+            menu_option = input('''1. Student grade
+2. Assignment statistics
+3. Assignment graph
+''')
         except EOFError:
+            pass
+
+        if menu_option == '1':
+            studentname = input("What is the student's name: ")
+            student_overall_grade(students, assignments, submissions, studentname)
+        elif menu_option == '2':
+            assignmentname = input("What is the assignment name: ")
+            assignment_statistics(assignments, submissions, assignmentname)
+        elif menu_option == '3':
+            assignment_name = input("What is the assignment name: ")
+            assignment_graph(assignments, submissions, assignment_name)
+        elif menu_option == '4':
             break
-
-            if option == '1':
-                studentname = sys.argv[2]
-                student_overall_grade(students, assignments, submissions, studentname)
-            elif option == '2':
-                if len(sys.argv) < 3:
-                    print("Usage: python script.py 2 <assignment_name>")
-                    return
-                assignmentname = sys.argv[2]
-                assignment_statistics(assignments, submissions, assignmentname)
-            elif option == '3':
-                if len(sys.argv) < 3:
-                    print("Usage: python script.py 3 <assignment_name>")
-                    return
-                assignment_name = sys.argv[2]
-                assignment_graph(assignments, submissions, assignment_name)
-
+        else:
+            print("Invalid option. Please try again.")
 
 if __name__ == '__main__':
     main()
