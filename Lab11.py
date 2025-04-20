@@ -58,7 +58,7 @@ def student_overall_grade(students, assignments, submissions, input_value):
         print(f"{round(average_grade, 2)}%")
 
 
-def assignment_statistics(assignment_dict, submissions):
+def assignment_statistics(assignment_dict, submissions, input_value):
     assignmentname = input("What is the assignment name: ")
     assignment_id = ''
     assignment_grades = []
