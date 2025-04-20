@@ -104,7 +104,7 @@ def assignment_graph(assignment_dict, submissions, assignment_name):
         plt.show()
 
 def main():
-   students = student_info('data/students.txt')
+    students = student_info('data/students.txt')
     assignments = assignment_info('data/assignments.txt')
     submissions = submission_info('data/submissions')
 
