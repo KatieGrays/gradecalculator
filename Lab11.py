@@ -55,7 +55,7 @@ def student_overall_grade(students, assignments, submissions, studentname):
         print("No submissions found for this student.")
     else:
         average_grade = (total_points / total_possible_points) * 100
-        print(f"{(int(average_grade))}%")
+        print(f"{(int(round(average_grade)))}%")
 
 
 def assignment_statistics(assignment_dict, submissions, assignmentname):
@@ -123,11 +123,12 @@ Enter your selection: ''')
         input_index += 1
 
         if menu_option == '1':
-            print("")
+            print("What is the student's name: ")
             studentname = input_lines[input_index].strip()
             input_index += 1
             student_overall_grade(students, assignments, submissions, studentname)
         elif menu_option == '2':
+            print("What is the assignment name: ")
             assignmentname = input_lines[input_index].strip()
             input_index += 1
             assignment_statistics(assignments, submissions, assignmentname)
