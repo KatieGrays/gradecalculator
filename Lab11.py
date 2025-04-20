@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import os
+import sys
 
 def student_info(filename):
     students_dict = {}
@@ -102,45 +103,29 @@ def assignment_graph(assignment_dict, submissions, assignment_name):
         plt.title(f'{assignment_name}')
         plt.show()
 
-def main(inputs=None):
+def main():
     students = student_info('data/students.txt')
     assignments = assignment_info('data/assignments.txt')
     submissions = submission_info('data/submissions')
 
+    input_lines = sys.stdin.read().strip().split('\n')
     input_index = 0
 
-    while True:
-        if inputs:
-            menu_option = inputs[input_index]
-            input_index += 1
-        else:
-            try:
-                menu_option = input('''1. Student grade
-2. Assignment statistics
-3. Assignment graph''')
-            except EOFError:
-                break
+    while input_index < len(input_lines):
+        menu_option = input_lines[input_index].strip()
+        input_index += 1
 
         if menu_option == '1':
-            if inputs:
-                studentname = inputs[input_index]
-                input_index += 1
-            else:
-                studentname = input("What is the student's name: ")
+            studentname = input_lines[input_index].strip()
+            input_index += 1
             student_overall_grade(students, assignments, submissions, studentname)
         elif menu_option == '2':
-            if inputs:
-                assignmentname = inputs[input_index]
-                input_index += 1
-            else:
-                assignmentname = input("What is the assignment name: ")
+            assignmentname = input_lines[input_index].strip()
+            input_index += 1
             assignment_statistics(assignments, submissions, assignmentname)
         elif menu_option == '3':
-            if inputs:
-                assignment_name = inputs[input_index]
-                input_index += 1
-            else:
-                assignment_name = input("What is the assignment name: ")
+            assignment_name = input_lines[input_index].strip()
+            input_index += 1
             assignment_graph(assignments, submissions, assignment_name)
         elif menu_option == '4':
             break
@@ -148,11 +133,4 @@ def main(inputs=None):
             print("Invalid option. Please try again.")
 
 if __name__ == '__main__':
-    # Example inputs for testing
-    test_inputs = [
-        '1', 'Hannah Cheeseman',
-        '2', 'Assignment 1',
-        '3', 'Assignment 1',
-        '4'
-    ]
-    main(test_inputs)
+    main()
