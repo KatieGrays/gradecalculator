@@ -102,28 +102,45 @@ def assignment_graph(assignment_dict, submissions, assignment_name):
         plt.title(f'{assignment_name}')
         plt.show()
 
-def main():
+def main(inputs=None):
     students = student_info('data/students.txt')
     assignments = assignment_info('data/assignments.txt')
     submissions = submission_info('data/submissions')
 
+    input_index = 0
+
     while True:
-        try:
-            menu_option = input('''1. Student grade
+        if inputs:
+            menu_option = inputs[input_index]
+            input_index += 1
+        else:
+            try:
+                menu_option = input('''1. Student grade
 2. Assignment statistics
-3. Assignment graph
-''')
-        except EOFError:
-            pass
+3. Assignment graph''')
+            except EOFError:
+                break
 
         if menu_option == '1':
-            studentname = input("What is the student's name: ")
+            if inputs:
+                studentname = inputs[input_index]
+                input_index += 1
+            else:
+                studentname = input("What is the student's name: ")
             student_overall_grade(students, assignments, submissions, studentname)
         elif menu_option == '2':
-            assignmentname = input("What is the assignment name: ")
+            if inputs:
+                assignmentname = inputs[input_index]
+                input_index += 1
+            else:
+                assignmentname = input("What is the assignment name: ")
             assignment_statistics(assignments, submissions, assignmentname)
         elif menu_option == '3':
-            assignment_name = input("What is the assignment name: ")
+            if inputs:
+                assignment_name = inputs[input_index]
+                input_index += 1
+            else:
+                assignment_name = input("What is the assignment name: ")
             assignment_graph(assignments, submissions, assignment_name)
         elif menu_option == '4':
             break
@@ -131,4 +148,11 @@ def main():
             print("Invalid option. Please try again.")
 
 if __name__ == '__main__':
-    main()
+    # Example inputs for testing
+    test_inputs = [
+        '1', 'Hannah Cheeseman',
+        '2', 'Assignment 1',
+        '3', 'Assignment 1',
+        '4'
+    ]
+    main(test_inputs)
